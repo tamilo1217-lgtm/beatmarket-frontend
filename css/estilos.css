@@ -78,3 +78,11 @@ button:hover {
     color: #ff6b6b;
     font-size: 14px;
 }
+
+.resultado {
+    min-height: 20px;
+    margin: 12px 0 0;
+    text-align: center;
+    color: #ffb74d;
+    font-size: 14px;
+}

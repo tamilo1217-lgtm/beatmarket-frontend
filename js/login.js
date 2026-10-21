@@ -21,10 +21,11 @@ formulario.addEventListener("submit", async (evento) => {
 
         const datos = await respuesta.json();
 
-        if (respuesta.ok) {
-            sessionStorage.setItem("usuario", JSON.stringify(datos));
+                if (respuesta.ok) {
+            sessionStorage.setItem("token", datos.token);
+            sessionStorage.setItem("usuario", JSON.stringify(datos.usuario));
             window.location.href = "inicio.html";
-        } else {
+        } else { 
             mensaje.textContent = datos.mensaje || "No se pudo iniciar sesión";
         }
     } catch (error) {
