@@ -3,20 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BeatMarket - Inicio</title>
+    <title>BeatMarket - Panel</title>
+    <link rel="preload" href="fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
-    <main class="tarjeta">
-        <h1>¡Bienvenido, <span id="nombre"></span>!</h1>
-        <p class="subtitulo">Rol: <strong id="rol"></strong></p>
-        <p id="descripcion"></p>
-                <p id="descripcion"></p>
-        <button id="btnProbar">Probar endpoint protegido</button>
-        <p id="resultado" class="resultado"></p>
-        <button id="btnSalir">Cerrar sesión</button>
-    </main>
+    <div class="app">
 
+        <aside class="lateral" id="lateral" aria-label="Navegación principal">
+            <div class="logo">
+                <span class="logo__icono"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10h2v4H4zM8 6h2v12H8zM12 3h2v18h-2zM16 8h2v8h-2zM20 11h2v2h-2z"/></svg></span>
+                BeatMarket
+            </div>
+            <nav class="menu" id="menu"></nav>
+            <div class="lateral__pie">BeatMarket · UTS · Sesión con JWT</div>
+        </aside>
+
+        <div class="principal">
+            <header class="barra-superior">
+                <div style="display:flex;align-items:center;gap:12px">
+                    <button type="button" class="btn btn--chico menu-movil" id="btnMenu" aria-label="Abrir menú">Menú</button>
+                    <h1 id="tituloVista">Resumen</h1>
+                </div>
+                <div class="usuario">
+                    <div class="usuario__datos">
+                        <div class="usuario__nombre" id="nombreUsuario"></div>
+                        <span class="insignia" id="rolUsuario"></span>
+                    </div>
+                    <button type="button" class="btn" id="btnSalir">Cerrar sesión</button>
+                </div>
+            </header>
+
+            <main class="contenido" id="contenido" tabindex="-1"></main>
+        </div>
+    </div>
+
+    <!-- Reproductor fijo -->
+    <div class="reproductor" id="reproductor" aria-label="Reproductor">
+        <div class="reproductor__beat">
+            <div class="reproductor__arte" id="repArte"></div>
+            <div style="min-width:0">
+                <div class="reproductor__titulo" id="repTitulo">Ningún beat seleccionado</div>
+                <div class="reproductor__sub" id="repSub">Pulsa play en un beat del catálogo</div>
+            </div>
+        </div>
+        <div class="reproductor__centro">
+            <button type="button" class="reproductor__boton" id="repBoton" aria-label="Reproducir o pausar" disabled>
+                <svg class="ico-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                <svg class="ico-pausa" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>
+            </button>
+            <div class="reproductor__barra" aria-hidden="true"><i id="repProgreso"></i></div>
+        </div>
+        <div class="reproductor__aviso">Fragmento de vista previa</div>
+    </div>
+
+    <dialog class="dialogo" id="dialogoCompra" aria-labelledby="compraTitulo">
+        <form method="dialog" id="formCompra">
+            <header class="dialogo__cab"><h2 id="compraTitulo">Comprar licencia</h2>
+                <button type="button" class="dialogo__cerrar" id="compraX" aria-label="Cerrar">&times;</button></header>
+            <div class="dialogo__cuerpo">
+                <p id="compraBeat" style="color:var(--texto-suave)"></p>
+                <div id="licencias" class="licencias"></div>
+            </div>
+            <footer class="dialogo__pie">
+                <button type="button" class="btn" id="compraCancelar">Cancelar</button>
+                <button type="submit" class="btn btn--primario">Confirmar compra</button>
+            </footer>
+        </form>
+    </dialog>
+
+    <script src="js/datos.js"></script>
+    <script src="js/almacen.js"></script>
+    <script src="js/audio.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/crud.js"></script>
     <script src="js/inicio.js"></script>
 </body>
 </html>
